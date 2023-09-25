@@ -47,11 +47,10 @@ print("")
 
 os.system(f"echo Name: {samplename} >> {output3}_brief.txt")
 os.system(f"echo Path: {samplepath} >> {output3}_brief.txt")
+os.system(f"echo Time: {date} >> {output3}_brief.txt")
+os.system(f"echo Size: {os.path.getsize(samplepath)/(1024*1024*1024):.8f} GB >> {output3}_brief.txt")
 os.system(f"echo MD5: {samplemd5hash} >> {output3}_brief.txt")
 os.system(f"echo SHA1: {samplesha1hash} >> {output3}_brief.txt")
-
-print(f"[+] Fetching Info, PsList, PsTree, NetScan, NetStat, CmdLine")
-print("")
 
 # Output Sample info
 print("[+] Fetching sample info")
@@ -76,6 +75,18 @@ os.system(f'python {vol3path} -f {samplepath} windows.netstat > {output3}_netsta
 # Output Sample cmdline
 print("[+] Fetching sample cmdline")
 os.system(f'python {vol3path} -f {samplepath} windows.cmdline > {output3}_cmdline.tsv')
+
+# Output Sample filescan
+print("[+] Fetching sample filescan")
+os.system(f'python {vol3path} -f {samplepath} windows.filescan > {output3}_filescan.txt')
+
+# Output Sample psscan
+print("[+] Fetching sample psscan")
+os.system(f'python {vol3path} -f {samplepath} windows.psscan > {output3}_psscan.tsv')
+
+# Output Sample malfind
+print("[+] Fetching sample malfind")
+os.system(f'python {vol3path} -f {samplepath} windows.malfind > {output3}_malfind.txt')
 
 # Output Sample cmdlist
 print(f'\n\n[+] Done | Saved to : {output2}\n')
